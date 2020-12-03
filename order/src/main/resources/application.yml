@@ -1,0 +1,29 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: order-server
+  cloud:
+    alibaba:
+      seata:
+        # 自定义事务组名称需要与 seata-server 中的对应
+        tx-service-group: my_seata_tx_group
+    nacos:
+      discovery:
+        # 服务端地址
+        server-addr: 127.0.0.1:8848
+  datasource:
+    # mysql 驱动 6.0 以上使用如下配置
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/order?serverTimezone=UTC
+    username: root
+    password: gaohu
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update # 没有表创建表，有表更新表
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy  # 命名策略
